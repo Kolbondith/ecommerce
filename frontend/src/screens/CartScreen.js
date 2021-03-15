@@ -4,8 +4,8 @@ import {Row, Col, Image, Card, ListGroup, Button, Form  } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import {addToCart} from '../actions/cartActions'
-import {removeFromCart} from '../actions/cartActions'
+import {addToCart, removeFromCart} from '../actions/cartActions'
+
 
 function CartScreen({match, location, history}) {
     const productId = match.params.id
@@ -22,7 +22,7 @@ function CartScreen({match, location, history}) {
         }
     },[dispatch, productId, qty])
 
-    const removeFromCart = (id) => {
+    const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))
     }
     const checkOutHandler = () =>{
@@ -70,7 +70,7 @@ function CartScreen({match, location, history}) {
                                         <Button 
                                             type='button'
                                             variant='light'
-                                            onClick={() => removeFromCart(item.product)}
+                                            onClick={() => removeFromCartHandler(item.product)}
                                         >
                                             <i className='fas fa-trash' />
                                         </Button>
